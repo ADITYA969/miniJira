@@ -14,7 +14,7 @@ app.use(cors({
   origin: function (origin, callback) {
     const allowed = [
       "http://localhost:3000",
-      "https://truthful-enchantment-production-acd8.up.railway.app"
+      "https://minijira-4r93.onrender.com"
     ];
     if (!origin || allowed.includes(origin)) {
       callback(null, true);
