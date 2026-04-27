@@ -10,7 +10,20 @@ const taskRoutes = require("./routes/task.routes");
 
 const app = express();
 
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(cors({
+  origin: function (origin, callback) {
+    const allowed = [
+      "http://localhost:3000",
+      "https://truthful-enchantment-production-acd8.up.railway.app"
+    ];
+    if (!origin || allowed.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(logger);
